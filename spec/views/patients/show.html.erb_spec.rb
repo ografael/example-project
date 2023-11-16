@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "patients/show", type: :view do
-  before(:each) do
+RSpec.describe 'patients/show' do
+  before do
     @patient = assign(:patient, Patient.create!(
-      name: "Name"
-    ))
+                                  name: 'Name'
+                                ))
   end
 
-  it "renders attributes in <p>" do
+  it 'renders attributes in <p>' do
     render
     expect(rendered).to match(/Name/)
   end

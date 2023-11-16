@@ -1,18 +1,19 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "patients/edit", type: :view do
-  before(:each) do
+RSpec.describe 'patients/edit' do
+  before do
     @patient = assign(:patient, Patient.create!(
-      name: "MyString"
-    ))
+                                  name: 'MyString'
+                                ))
   end
 
-  it "renders the edit patient form" do
+  it 'renders the edit patient form' do
     render
 
-    assert_select "form[action=?][method=?]", patient_path(@patient), "post" do
-
-      assert_select "input[name=?]", "patient[name]"
+    assert_select 'form[action=?][method=?]', patient_path(@patient), 'post' do
+      assert_select 'input[name=?]', 'patient[name]'
     end
   end
 end

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class AppointmentQuestionResponsesController < ApplicationController
-  before_action :set_appointment_question_response, only: %i[ show edit update destroy ]
+  before_action :set_appointment_question_response, only: %i[show edit update destroy]
 
   # GET /appointment_question_responses or /appointment_question_responses.json
   def index
@@ -7,8 +9,7 @@ class AppointmentQuestionResponsesController < ApplicationController
   end
 
   # GET /appointment_question_responses/1 or /appointment_question_responses/1.json
-  def show
-  end
+  def show; end
 
   # GET /appointment_question_responses/new
   def new
@@ -16,8 +17,7 @@ class AppointmentQuestionResponsesController < ApplicationController
   end
 
   # GET /appointment_question_responses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /appointment_question_responses or /appointment_question_responses.json
   def create
@@ -25,7 +25,10 @@ class AppointmentQuestionResponsesController < ApplicationController
 
     respond_to do |format|
       if @appointment_question_response.save
-        format.html { redirect_to appointment_question_response_url(@appointment_question_response), notice: "Appointment question response was successfully created." }
+        format.html do
+          redirect_to appointment_question_response_url(@appointment_question_response),
+                      notice: 'Appointment question response was successfully created.'
+        end
         format.json { render :show, status: :created, location: @appointment_question_response }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -38,7 +41,10 @@ class AppointmentQuestionResponsesController < ApplicationController
   def update
     respond_to do |format|
       if @appointment_question_response.update(appointment_question_response_params)
-        format.html { redirect_to appointment_question_response_url(@appointment_question_response), notice: "Appointment question response was successfully updated." }
+        format.html do
+          redirect_to appointment_question_response_url(@appointment_question_response),
+                      notice: 'Appointment question response was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @appointment_question_response }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -52,19 +58,23 @@ class AppointmentQuestionResponsesController < ApplicationController
     @appointment_question_response.destroy
 
     respond_to do |format|
-      format.html { redirect_to appointment_question_responses_url, notice: "Appointment question response was successfully destroyed." }
+      format.html do
+        redirect_to appointment_question_responses_url,
+                    notice: 'Appointment question response was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_appointment_question_response
-      @appointment_question_response = AppointmentQuestionResponse.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def appointment_question_response_params
-      params.require(:appointment_question_response).permit(:appointment_question_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_appointment_question_response
+    @appointment_question_response = AppointmentQuestionResponse.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def appointment_question_response_params
+    params.require(:appointment_question_response).permit(:appointment_question_id)
+  end
 end

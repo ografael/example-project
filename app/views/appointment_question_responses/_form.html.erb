@@ -22,38 +22,30 @@
 <%= form_with(model: PatientAppointment.new, url: appointment_question_responses_path) do |form| %>
   <% @appointment_groups.each do |appointment_group| %>
     <h1><%= appointment_group.name %></h1>
+
     <hr/>
+
     <% appointment_group.appointment_titles.each do |appointment_title| %>
       <h2><%= appointment_title.name %></h2>
+
       <% appointment_title.appointment_questions.each_with_index do |appointment_question, index| %>
+
         <h3><%= appointment_question.eye_side %></h3>
 
-        <%# <%1# <%= form.form_with(model: ) :appointment_question_option do |option_form| %2> %1> %>
-        <%# <%= form.form_with(model: Object.new) do |option_form| %1> %>
-
+        <%= form.hidden_field "responses[][appointment_question_id]",
+                          value: appointment_question.id %>
         <%= form.collection_select(
-          :appointment_question_option_id,
+          "responses[][appointment_question_option_id]",
           appointment_question.appointment_question_options,
           :id,
-          :question_option,
-          name: "patient_appointment[responses][#{index}][response_question_option_id]"
+          :name,
+          { id: "#{appointment_question}-#{index}" }
         ) %>
 
-       <%# <%= form.select :role_id, options_from_collection_for_select(@roles, :id, :name), prompt: "Choose one" %1> %>
-
-
-        <%# <% end %1> %>
       <% end %>
     <% end %>
   <% end %>
+  <div>
+    <%= form.submit %>
+  </div>
 <% end %>
-
-<%# <div> %>
-<%#   <%= form.submit %1> %>
-<%# </div> %>
-<%# <% end %1> %>
-
-<%# patient_appointment[responses][0][response_question_id] %>
-<%# patient_appointment[responses][0][response_question_option_id] %>
-
-<%# patient_appointment[appointment_question_option_id] %>

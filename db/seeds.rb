@@ -19,9 +19,9 @@ end
         eye_side: eye
       )
 
-      ['-4,25', '-4,75', '-5,00', '-5,25'].each do |question_option|
+      ['-4,25', '-4,75', '-5,00', '-5,25'].each do |name|
         app_question.appointment_question_options.create!(
-          question_option:
+          name:
         )
       end
     end

@@ -22,6 +22,11 @@ class AppointmentQuestionResponsesController < ApplicationController
 
   # POST /appointment_question_responses or /appointment_question_responses.json
   def create
+    # byebug
+    # puts "####"
+    # puts params
+    # puts "####"
+
     @appointment_question_response = AppointmentQuestionResponse.new(appointment_question_response_params)
 
     respond_to do |format|

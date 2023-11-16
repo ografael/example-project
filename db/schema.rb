@@ -22,7 +22,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_135438) do
 
   create_table "appointment_question_options", force: :cascade do |t|
     t.bigint "appointment_question_id", null: false
-    t.string "question_option"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["appointment_question_id"], name: "index_appointment_question_options_on_appointment_question_id"

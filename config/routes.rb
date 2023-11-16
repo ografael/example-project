@@ -10,5 +10,5 @@ Rails.application.routes.draw do
   resources :users
   resources :customers
 
-  root 'customers#index'
+  root 'appointment_question_responses#index'
 end

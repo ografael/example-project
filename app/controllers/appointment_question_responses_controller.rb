@@ -2,6 +2,7 @@
 
 class AppointmentQuestionResponsesController < ApplicationController
   before_action :set_appointment_question_response, only: %i[show edit update destroy]
+  before_action :set_appointment_groups, only: %i[new edit update]
 
   # GET /appointment_question_responses or /appointment_question_responses.json
   def index
@@ -67,6 +68,10 @@ class AppointmentQuestionResponsesController < ApplicationController
   end
 
   private
+
+  def set_appointment_groups
+    @appointment_groups = AppointmentGroup.all
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_appointment_question_response

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Appointment groups</h1>
+
+<div id="appointment_groups">
+  <% @appointment_groups.each do |appointment_group| %>
+    <%= render appointment_group %>
+    <p>
+      <%= link_to "Show this appointment group", appointment_group %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New appointment group", new_appointment_group_path %>

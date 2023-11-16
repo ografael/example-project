@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @appointment_group %>
+
+<div>
+  <%= link_to "Edit this appointment group", edit_appointment_group_path(@appointment_group) %> |
+  <%= link_to "Back to appointment groups", appointment_groups_path %>
+
+  <%= button_to "Destroy this appointment group", @appointment_group, method: :delete %>
+</div>

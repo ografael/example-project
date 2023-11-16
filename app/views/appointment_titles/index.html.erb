@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Appointment titles</h1>
+
+<div id="appointment_titles">
+  <% @appointment_titles.each do |appointment_title| %>
+    <%= render appointment_title %>
+    <p>
+      <%= link_to "Show this appointment title", appointment_title %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New appointment title", new_appointment_title_path %>

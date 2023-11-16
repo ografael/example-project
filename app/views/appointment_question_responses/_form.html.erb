@@ -1,48 +1,59 @@
-<%= form_with(model: appointment_question_response) do |form| %>
-  <% if appointment_question_response.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(appointment_question_response.errors.count, "error") %>
-        prohibited this appointment_question_response from being saved:</h2>
+<%# <%= form_with(model: appointment_question_response) do |form| %1> %>
+<%#   <% if appointment_question_response.errors.any? %1> %>
+<%#     <div style="color: red"> %>
+<%#       <h2><%= pluralize(appointment_question_response.errors.count, "error") %1> %>
+<%#         prohibited this appointment_question_response from being saved:</h2> %>
 
-      <ul>
-        <% appointment_question_response.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+<%#       <ul> %>
+<%#         <% appointment_question_response.errors.each do |error| %1> %>
+<%#           <li><%= error.full_message %1></li> %>
+<%#         <% end %1> %>
+<%#       </ul> %>
+<%#     </div> %>
+<%#   <% end %1> %>
 
-  <div>
-    <%= form.label :appointment_question_id, style: "display: block" %>
-    <%= form.text_field :appointment_question_id %>
-  </div>
+<%#   <div> %>
+<%#     <%= form.label :appointment_question_id, style: "display: block" %1> %>
+<%#     <%= form.text_field :appointment_question_id %1> %>
+<%#   </div> %>
 
-  <%# appointment_question_response[appointment_question_option][appointment_question_option_id] %>
+<%# appointment_question_response[appointment_question_option][appointment_question_option_id] %>
 
+<%= form_with(model: PatientAppointment.new, url: appointment_question_responses_path) do |form| %>
   <% @appointment_groups.each do |appointment_group| %>
     <h1><%= appointment_group.name %></h1>
     <hr/>
     <% appointment_group.appointment_titles.each do |appointment_title| %>
       <h2><%= appointment_title.name %></h2>
-      <% appointment_title.appointment_questions.each do |appointment_question| %>
+      <% appointment_title.appointment_questions.each_with_index do |appointment_question, index| %>
         <h3><%= appointment_question.eye_side %></h3>
 
-        <%= form.fields_for :appointment_question_option do |option_form| %>
-          <%= option_form.collection_select(
-            :appointment_question_option_id,
-            appointment_question.appointment_question_options,
-            :id,
-            :question_option
-          ) %>
-        <% end %>
+        <%# <%1# <%= form.form_with(model: ) :appointment_question_option do |option_form| %2> %1> %>
+        <%# <%= form.form_with(model: Object.new) do |option_form| %1> %>
+
+        <%= form.collection_select(
+          :appointment_question_option_id,
+          appointment_question.appointment_question_options,
+          :id,
+          :question_option,
+          name: "patient_appointment[responses][#{index}][response_question_option_id]"
+        ) %>
+
+       <%# <%= form.select :role_id, options_from_collection_for_select(@roles, :id, :name), prompt: "Choose one" %1> %>
+
+
+        <%# <% end %1> %>
       <% end %>
     <% end %>
   <% end %>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>
 
+<%# <div> %>
+<%#   <%= form.submit %1> %>
+<%# </div> %>
+<%# <% end %1> %>
 
+<%# patient_appointment[responses][0][response_question_id] %>
+<%# patient_appointment[responses][0][response_question_option_id] %>
 
+<%# patient_appointment[appointment_question_option_id] %>

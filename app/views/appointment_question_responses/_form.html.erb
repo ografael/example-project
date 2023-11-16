@@ -17,6 +17,8 @@
     <%= form.text_field :appointment_question_id %>
   </div>
 
+  <%# appointment_question_response[appointment_question_option][appointment_question_option_id] %>
+
   <% @appointment_groups.each do |appointment_group| %>
     <h1><%= appointment_group.name %></h1>
     <hr/>
@@ -35,10 +37,12 @@
         <% end %>
       <% end %>
     <% end %>
-
   <% end %>
 
   <div>
     <%= form.submit %>
   </div>
 <% end %>
+
+
+

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_16_135526) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_16_135438) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -30,9 +30,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_135526) do
 
   create_table "appointment_question_responses", force: :cascade do |t|
     t.bigint "appointment_question_id", null: false
+    t.bigint "appointment_question_option_id", null: false
+    t.bigint "patient_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["appointment_question_id"], name: "index_appointment_question_responses_on_appointment_question_id"
+    t.index ["appointment_question_option_id"], name: "index_aqr_on_aqo_id"
+    t.index ["patient_id"], name: "index_appointment_question_responses_on_patient_id"
   end
 
   create_table "appointment_questions", force: :cascade do |t|
@@ -71,7 +75,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_16_135526) do
   end
 
   add_foreign_key "appointment_question_options", "appointment_questions"
+  add_foreign_key "appointment_question_responses", "appointment_question_options"
   add_foreign_key "appointment_question_responses", "appointment_questions"
+  add_foreign_key "appointment_question_responses", "patients"
   add_foreign_key "appointment_questions", "appointment_titles"
   add_foreign_key "appointment_titles", "appointment_groups"
 end

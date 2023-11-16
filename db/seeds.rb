@@ -27,3 +27,10 @@ end
     end
   end
 end
+
+appointment_question = AppointmentQuestion.last
+
+Patient.last.appointment_question_responses.create!(
+  appointment_question:,
+  appointment_question_option: appointment_question.appointment_question_options.sample
+)

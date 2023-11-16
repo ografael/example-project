@@ -22,6 +22,8 @@ class AppointmentQuestionResponsesController < ApplicationController
 
   # POST /appointment_question_responses or /appointment_question_responses.json
   def create
+    byebug
+
     @appointment_question_response = AppointmentQuestionResponse.new(appointment_question_response_params)
 
     respond_to do |format|
@@ -80,6 +82,9 @@ class AppointmentQuestionResponsesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def appointment_question_response_params
-    params.require(:appointment_question_response).permit(:appointment_question_id)
+    params.require(:appointment_question_response).permit(:appointment_question_id,
+                                                          appointment_question_option: %i[
+                                                            appointment_question_option_id question_option
+                                                          ])
   end
 end
